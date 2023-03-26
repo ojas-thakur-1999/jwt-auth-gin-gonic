@@ -1,6 +1,8 @@
 package main
 
 import (
+	"jwt-auth-gin-gonic/controllers"
+	"jwt-auth-gin-gonic/database"
 	routes "jwt-auth-gin-gonic/routes"
 	"log"
 	"os"
@@ -21,6 +23,12 @@ func main() {
 	if port == "" {
 		port = "8080"
 	}
+
+	// intialize DB connection
+	database.InitDBConn()
+
+	// initialize user collection
+	controllers.InitUserCollection()
 
 	router := gin.New()
 	router.Use(gin.Logger())

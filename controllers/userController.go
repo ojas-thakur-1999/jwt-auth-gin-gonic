@@ -18,8 +18,12 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-var userCollection = database.OpenCollection(database.Client, "user")
+var userCollection *mongo.Collection
 var validate = validator.New()
+
+func InitUserCollection() {
+	userCollection = database.OpenCollection(database.Client, "user")
+}
 
 func HashPassword(password string) string {
 	hashedPass, err := bcrypt.GenerateFromPassword([]byte(password), 14)
