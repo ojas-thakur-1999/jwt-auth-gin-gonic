@@ -30,6 +30,9 @@ func main() {
 	// initialize user collection
 	controllers.InitUserCollection()
 
+	// initialize user struct validator
+	controllers.InitValidator()
+
 	router := gin.New()
 	router.Use(gin.Logger())
 

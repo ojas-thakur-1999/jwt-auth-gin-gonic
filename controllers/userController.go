@@ -19,10 +19,14 @@ import (
 )
 
 var userCollection *mongo.Collection
-var validate = validator.New()
+var validate *validator.Validate
 
 func InitUserCollection() {
 	userCollection = database.OpenCollection(database.Client, "user")
+}
+
+func InitValidator() {
+	validate = validator.New()
 }
 
 func HashPassword(password string) string {
